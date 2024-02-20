@@ -30,10 +30,10 @@ app.set('views' , path.join(__dirname , './views'))
 // app.use(express.urlencoded({ extended: true }));
 app.use(authController.isLoggedIn)
   app.use('/', viewRouoter)
-  app.use('api/v1/users' , userRouter);
-  app.use('api/v1/order' , orderRouter);
-  app.use('api/v1/AddFund' , FundsRouter);
-  app.use('api/v1/contact' , contactRouter);
+  app.use('/api/v1/users' , userRouter);
+  app.use('/api/v1/order' , orderRouter);
+  app.use('/api/v1/AddFund' , FundsRouter);
+  app.use('/api/v1/contact' , contactRouter);
   app.all( "*" ,(req,res,next)=>{
     console.log(req.originalUrl);
     next(new AppError(`server cannot find ${req.originalUrl} on this server` , 400));
