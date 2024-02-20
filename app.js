@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express();
-const globalErrorHandler = require('./Controller/errorController')
+const globalErrorHandler = require('./controller/errorController')
 const bodyParser = require('body-parser')
 const userRouter = require('./Router/userRouter')
 const orderRouter = require('./Router/orderRoutes')
