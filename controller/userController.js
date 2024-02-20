@@ -27,10 +27,7 @@ const upload = multer({
 });
 
 exports.uploadUsePhoto = upload.single("photo");
-// Users function for handling users
 exports.addNewUser = authController.signup;
-// exports.findUser = handleFactory.findOne(User);
-// exports.updateUser = handleFactory.updateOne(User);
 exports.getAllUsers = handleFactory.getAll(User);
 exports.resizeUserPhoto = async(req, res, next) => {
   if (!req.file) return next();
@@ -42,9 +39,6 @@ exports.resizeUserPhoto = async(req, res, next) => {
       .toFile(`public/img/users/${req.file.filename}`);
        next();
 };
-// const users = JSON.parse(
-//   fs.readFileSync(path.join(__dirname + '../data/users.json')),
-// );
 const filterObj = (obj, ...allowedFields) => {
   const newObj = {};
   Object.keys(obj).forEach((el) => {

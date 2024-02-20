@@ -24,7 +24,6 @@ if (process.env.NODE_ENV === 'production') {
 }
 console.log(token, cookieOptions)
 res.cookie('jwt' , token , cookieOptions)
-console.log(token)
 user.password = undefined
   res.status(statusCode).json({
     status : 'sucess',

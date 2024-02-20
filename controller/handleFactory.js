@@ -5,7 +5,6 @@ const AppError = require("../utils/appError");
 exports.Addnew = (Model) =>
   catchAsync(async (req, res, next) => {
       const document = await Model.create(req.body);
-      // console.log(document)
       if (!document) {
         return next(new AppError("New Entity could not be created", 400));
       }
@@ -41,11 +40,6 @@ exports.deleteOne = (Model) =>
   });
 exports.updateOne = (Model) =>
   catchAsync(async (req, res, next) => {
-    // if (req.body.id) {
-    //   return next(
-    //     new AppError("Id cannot be updated once it is assigned", 406)
-    //   );
-    // }
     const document = await Model.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true,
@@ -61,17 +55,7 @@ exports.updateOne = (Model) =>
   });
 exports.getAll = (Model) =>
   catchAsync(async (req, res, next) => {
-//     let filter = {};
-
-//     if(req.params.tourid) filter = {tour: req.params.tourid};
-// const features = new ApiFeatures(Model.find(filter), req.query)
-// .filter()
-// .sort()
-// .pagination()
-// .limitFields();
 const document = await Model.find();
-
-    // const document = await Model.find();
     res.status(200).json({
       status: "sucess",
       data: document,

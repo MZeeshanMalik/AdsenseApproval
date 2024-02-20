@@ -9,22 +9,13 @@ const sendErrorDevolpment = (err,res)=>{
     stack: err.stack
 })}
 const sendErrorProduction = (err,res)=>{
-  // console.error("Error" , err);
-  console.log(err)
+  console.error("Error" , err);
   if(err.isOpreational){
     res.status(err.statusCode).render('error' , {
       title: 'Error',
       msg: err.message
     })
-    // res.status(err.statusCode).json({
-    //   error: err.status,
-    //   msg: err.message,
-    // })
   }else{
-      // res.status(500).json({
-      //   status: "failed",
-      //   message: "something went wrong"
-      // })
       res.status(500).render('error' , {
         title: 'oops something went wrong',
         msg: 'Please try again later'
@@ -32,7 +23,6 @@ const sendErrorProduction = (err,res)=>{
     }
 }
 const castErrorHandler = (err)=>{
-  console.log("i am in cast error handler")
  const message = `invalid ${err.path} - value: ${err.value}`
   return(new AppError(message , 400))
   // res.status(400).json()
@@ -59,11 +49,8 @@ module.exports = (err,req,res,next)=>{
       sendErrorDevolpment(err,res);
       }else if(process.env.NODE_ENV == "production"){
         let error = { ...err }
-        console.log({...err})
         error.name = err.name
         error.message = err.message
-        // console.log(error.name)
-        // console.log(error)
         if(error.name === "CastError"){ 
           error = castErrorHandler(error);}
         if(error.name === "ValidationError"){

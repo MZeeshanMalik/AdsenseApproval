@@ -8,6 +8,7 @@ const contactRouter = require('./Router/contactRouter')
 const FundsRouter = require('./Router/AddFundRoute')
 const viewRouoter = require('./Router/viewRoute')
 const helmet = require('helmet')
+const compression = require('compression')
 const cookieParser = require('cookie-parser');
 const authController = require('./controller/authenticationController')
 const AppError = require('./utils/appError')
@@ -19,6 +20,7 @@ app.use(bodyParser.json());
 app.use(helmet({
   contentSecurityPolicy: false,
 }))
+app.use(compression())
 // app.use(express.json({limit: '10kb'}));
 app.use(express.static(path.join(__dirname, 'public')));
 // app.use('/' , viewRouter)
@@ -28,10 +30,10 @@ app.set('views' , path.join(__dirname , './views'))
 // app.use(express.urlencoded({ extended: true }));
 app.use(authController.isLoggedIn)
   app.use('/', viewRouoter)
-  app.use('/users' , userRouter);
-  app.use('/order' , orderRouter);
-  app.use('/AddFund' , FundsRouter);
-  app.use('/contact' , contactRouter);
+  app.use('api/v1/users' , userRouter);
+  app.use('api/v1/order' , orderRouter);
+  app.use('api/v1/AddFund' , FundsRouter);
+  app.use('api/v1/contact' , contactRouter);
   app.all( "*" ,(req,res,next)=>{
     console.log(req.originalUrl);
     next(new AppError(`server cannot find ${req.originalUrl} on this server` , 400));

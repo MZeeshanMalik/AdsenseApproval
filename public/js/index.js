@@ -8,6 +8,7 @@ const loginForm = document.getElementById('login--form');
 const signUpForm = document.getElementById('signup--form');
 const fundsForm = document.getElementById('fundsForm')
 const contactform  = document.getElementById('contact--form')
+const logoutBtn = document.getElementById('logout')
 if(loginForm){
     loginForm.addEventListener('submit', (e)=>{
         e.preventDefault();
@@ -64,16 +65,6 @@ if(OrderForm){
     })
 }
 
-// if(fundsForm){
-//     fundsForm.addEventListener('submit' , (el)=>{
-//        el.preventDefault();
-//        const amount = document.getElementById('#amount').value;
-//        const transId = document.getElementById('#transId').value;
-//        const image = document.getElementById('#img').files[0];
-//        AddFundRequest(amount,transId,image)
-//    })
-// }
-
 export const AddFundRequest = async (amount, transactionId, image) => {
     try {
       const formData = new FormData();
@@ -83,7 +74,7 @@ export const AddFundRequest = async (amount, transactionId, image) => {
   
       const res = await axios({
         method: 'post',
-        url: 'http://localhost:3000/AddFund',
+        url: 'api/v1/AddFund',
         data: formData,
         headers: {
           'Content-Type': 'multipart/form-data'
@@ -117,7 +108,7 @@ export const AddFundRequest = async (amount, transactionId, image) => {
     try{
       const res= await axios({
         method: "post",
-        url: "http://localhost:3000/contact/api/v1/",
+        url: "api/v1/contact",
         data: {
           name,
           email,
@@ -145,4 +136,9 @@ export const AddFundRequest = async (amount, transactionId, image) => {
       const problem = document.getElementById('problem').value;
       contactForm(name,email,phone,problem)
     })
+  }
+  if(logoutBtn){
+    logoutBtn.addEventListener('click' , ()=>{
+      logout();
+    } )
   }

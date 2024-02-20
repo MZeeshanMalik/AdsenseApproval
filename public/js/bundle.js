@@ -5491,7 +5491,7 @@ var login = exports.login = /*#__PURE__*/function () {
           _context.next = 3;
           return (0, _axios.default)({
             method: "post",
-            url: "http://localhost:3000/users/login",
+            url: "api/v1/users/login",
             data: {
               email: email,
               password: password
@@ -5532,7 +5532,7 @@ var logout = exports.logout = /*#__PURE__*/function () {
           _context2.next = 3;
           return (0, _axios.default)({
             method: "Get",
-            url: "http://127.0.0.1:3000/users/logout"
+            url: "api/v1/users/logout"
           });
         case 3:
           res = _context2.sent;
@@ -5569,7 +5569,7 @@ var signup = exports.signup = /*#__PURE__*/function () {
           _context3.next = 3;
           return (0, _axios.default)({
             method: "post",
-            url: "http://localhost:3000/users/signup",
+            url: "api/v1/users/signup",
             data: {
               email: email,
               name: name,
@@ -5614,7 +5614,7 @@ var placeOrder = exports.placeOrder = /*#__PURE__*/function () {
           _context4.next = 3;
           return (0, _axios.default)({
             method: 'post',
-            url: 'http://localhost:3000/order/api/v1',
+            url: 'api/v1/order/api/v1',
             data: {
               plan: plan,
               webUrl: webUrl,
@@ -5658,7 +5658,7 @@ var AddFundRequest = exports.AddFundRequest = /*#__PURE__*/function () {
           _context5.next = 3;
           return (0, _axios.default)({
             method: 'post',
-            url: 'http://localhost:3000/AddFund',
+            url: 'api/v1/AddFund',
             data: {
               amount: amount,
               transctionId: transctionId,
@@ -59815,6 +59815,7 @@ var loginForm = document.getElementById('login--form');
 var signUpForm = document.getElementById('signup--form');
 var fundsForm = document.getElementById('fundsForm');
 var contactform = document.getElementById('contact--form');
+var logoutBtn = document.getElementById('logout');
 if (loginForm) {
   loginForm.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -59868,17 +59869,6 @@ if (OrderForm) {
     (0, _login.placeOrder)(plan, url, creditionls, userId);
   });
 }
-
-// if(fundsForm){
-//     fundsForm.addEventListener('submit' , (el)=>{
-//        el.preventDefault();
-//        const amount = document.getElementById('#amount').value;
-//        const transId = document.getElementById('#transId').value;
-//        const image = document.getElementById('#img').files[0];
-//        AddFundRequest(amount,transId,image)
-//    })
-// }
-
 var AddFundRequest = exports.AddFundRequest = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(amount, transactionId, image) {
     var formData, res;
@@ -59893,7 +59883,7 @@ var AddFundRequest = exports.AddFundRequest = /*#__PURE__*/function () {
           _context.next = 7;
           return (0, _axios.default)({
             method: 'post',
-            url: 'http://localhost:3000/AddFund',
+            url: 'api/v1/AddFund',
             data: formData,
             headers: {
               'Content-Type': 'multipart/form-data'
@@ -59946,7 +59936,7 @@ var contactForm = /*#__PURE__*/function () {
           _context2.next = 3;
           return (0, _axios.default)({
             method: "post",
-            url: "http://localhost:3000/contact/api/v1/",
+            url: "api/v1/contact",
             data: {
               name: name,
               email: email,
@@ -59989,6 +59979,11 @@ if (contactform) {
     contactForm(name, email, phone, problem);
   });
 }
+if (logoutBtn) {
+  logoutBtn.addEventListener('click', function () {
+    (0, _login.logout)();
+  });
+}
 },{"./login":"login.js","axios":"../../node_modules/axios/index.js","./alert":"alert.js","jsonwebtoken":"../../node_modules/jsonwebtoken/index.js"}],"C:/Users/Muhammad Zeeshan/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -60014,7 +60009,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54748" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51668" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

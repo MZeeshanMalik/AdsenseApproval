@@ -5,7 +5,7 @@ export const login = async (email, password) => {
   try {
     const res = await axios({
       method: "post",
-      url: "http://localhost:3000/users/login",
+      url: "api/v1/users/login",
       data: {
         email,
         password,
@@ -26,7 +26,7 @@ export const logout = async () => {
   try {
     const res = await axios({
       method: "Get",
-      url: "http://127.0.0.1:3000/users/logout",
+      url: "api/v1/users/logout",
     });
     if (res.data.status === "sucess") {
       window.setTimeout(() => {
@@ -43,7 +43,7 @@ export const signup = async (email, name, phone, password, confirmPassword) => {
   try {
     const res = await axios({
       method: "post",
-      url: "http://localhost:3000/users/signup",
+      url: "api/v1/users/signup",
       data: {
         email,
         name,
@@ -68,7 +68,7 @@ export const placeOrder = async(plan,webUrl,creditionls,customer)=>{
   try{
     const res = await axios({
       method: 'post',
-      url: 'http://localhost:3000/order/api/v1',
+      url: 'api/v1/order/api/v1',
       data:{
         plan,
         webUrl,
@@ -92,7 +92,7 @@ export const AddFundRequest = async(amount,transctionId,image)=>{
   try{
     const res = await axios({
       method: 'post',
-      url: 'http://localhost:3000/AddFund',
+      url: 'api/v1/AddFund',
       data: {
         amount,
         transctionId,

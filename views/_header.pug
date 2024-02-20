@@ -16,7 +16,7 @@ nav
             a(href='/contact') Feedback
         if user 
             li 
-                a(href='#' target='/logout') Logout
+                a#logout(href='/logout') Logout
             li 
                a(href="/user")=user.name
         else
