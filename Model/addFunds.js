@@ -1,0 +1,15 @@
+const mongoose = require('mongoose')
+
+const AddFundSchema = new mongoose.Schema({
+    amount: {
+        type: Number
+    },
+    transctionId: {
+        type: String
+    },
+    Image: {
+        type: String
+    }
+})
+const AddFunds = mongoose.model( 'AddFunds' ,AddFundSchema );
+module.exports = AddFunds

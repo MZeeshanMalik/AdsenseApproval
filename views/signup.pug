@@ -1,0 +1,27 @@
+extends base
+block content 
+
+    section.login_section
+        .login
+            h2 Login
+            form#signup--form 
+                .box
+                    span Email
+                    .name
+                        input#email(required type='email' placeholder='Enter your email')
+                    span Name
+                    .name
+                        input#name(required type='text' placeholder='Enter your Name')
+                    span Phone Number
+                    .name
+                        input#phone(type='text' required placeholder='Enter your Phone Number')
+                    span Password
+                    .name
+                        input#password(type='text' placeholder='Enter your Password')
+                    span Confirm Password
+                    .name
+                        input#confirmPassword(type='text' placeholder='Confirm your Password')
+                    .forgetpass
+                        a(href='') Already have account?
+                    .button.name
+                        button Sign up

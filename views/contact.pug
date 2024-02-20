@@ -1,0 +1,25 @@
+extends base
+block content 
+    .home-articles.max-width1.m-auto.font1
+        .contact-form
+            h2 Contact us 
+            form#contact--form
+                #name.form-box
+                    input#name(type='text' name='fname' placeholder='Enter your Name')
+                    b
+                        span.formerror
+                #email.form-box
+                    input#email(type='email' name='femail' placeholder='Enter your Email')
+                    b
+                        span.formerror
+                #phone-no.form-box
+                    input#phone(type='phone number' name='phone' placeholder='Enter your phone number')
+                    b
+                        span.formerror  
+                #textarea.form-box
+                    textarea#problem(name='about' cols='30' rows='10' placeholder='Enter about yourself')
+                    b
+                        span.formerror  
+                .form-box
+                    input.btn(type='submit')
+                    // <button type="submit" value="Submit" class="btn">Submit</button>

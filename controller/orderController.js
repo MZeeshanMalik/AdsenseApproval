@@ -1,0 +1,5 @@
+const Order = require('../Model/orderModel')
+const catchAsync = require('../utils/catchAsync')
+// const AppError  = require('../utils/appError')
+const handleFactory = require('./handleFactory')
+exports.createNeworder = (handleFactory.Addnew(Order))

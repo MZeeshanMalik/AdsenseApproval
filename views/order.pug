@@ -1,0 +1,17 @@
+extends user_template
+block content 
+    h1 Place Your Order
+    section
+        .order_input
+            .input_info
+                form#order--form(action='')
+                    span Please select Plan
+                    select(name='' id='options')
+                        option(value='AdsenseApproval 50$') AdsenseApproval 50$
+                        option(value='AdsenseApproval Fast Delivery 70$') AdsenseApproval Fast Delivery 70$
+                        option(value='Adsense Approval  on fresh Domain 100$') Adsense Approval  on fresh Domain 100$
+                    span Enter URL of your website
+                    input#url.inp(required='' placeholder='http//:' type='text')
+                    span Enter credationals of your website
+                    textarea#creditionls(name='' cols='30' rows='5')
+                    button.cart_btn.sub_btn submit

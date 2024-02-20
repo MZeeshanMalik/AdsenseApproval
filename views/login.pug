@@ -1,0 +1,16 @@
+extends base
+block content 
+    .login
+        h2 Login
+        form#login--form 
+            .box
+                span Email
+                .name
+                    input#email(type='Email'  placeholder='Enter your Email')
+                span Password
+                .name
+                    input#password(type='text' placeholder='Enter your Password')
+                .forgetpass
+                    a(href='') forget Password?
+                .button.name
+                    button(type='submit') Log in    

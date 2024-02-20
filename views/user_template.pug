@@ -1,0 +1,63 @@
+doctype html 
+html 
+    head 
+        meta(charset='UTF-8')
+        meta(http-equiv="Content-Security-Policy" content="default-src *; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'; img-src * data: 'unsafe-inline'; connect-src * 'unsafe-inline'; frame-src *;")
+        meta(name='viewport' content='width=device-width, initial-scale=1.0')
+        link(rel='stylesheet' href='/style.css') 
+        title AdsenseApproval
+    body
+        #alert-container
+        include _header
+        include _userPanel
+        block content 
+            h1 Our Packages
+            section.orders_list
+                .card
+                    .card_img
+                        img(src='/images/IMG-20240216-WA0003.jpg' alt='Adsense images')
+                    .card_content
+                        .card_heading
+                            | AdsenseApproval
+                        .description
+                            div
+                            span.span Time Required
+                            span 21 Days
+                            div
+                            span.span Price
+                            span 50$
+                        button.cart_btn 
+                            a(href="/order") Order Now
+                .card
+                    .card_img
+                        img(src='/images/IMG-20240216-WA0003.jpg' alt='Adsense images')
+                    .card_content
+                        .card_heading
+                            | AdsenseApproval Fast Delivery
+                        .description
+                            div
+                            span.span Time Required
+                            span 15 Days
+                            div
+                            span.span Price
+                            span 75$
+                        button.cart_btn 
+                            a(href="/order") Order Now
+                .card
+                    .card_img
+                        img(src='/images/IMG-20240216-WA0003.jpg' alt='Adsense images')
+                    .card_content
+                        .card_heading
+                            | Adsense Approval  on fresh Domain
+                        .description
+                            div
+                            span.span Time Required
+                            span 30 Days
+                            div
+                            span.span Price
+                            span 100$
+                        button.cart_btn 
+                            a(href="/order") Order Now
+
+        include _footer
+        script(src="./js/bundle.js")

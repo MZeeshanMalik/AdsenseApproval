@@ -1,0 +1,35 @@
+extends user_template
+block content 
+    h1 Add Funds
+    .funds_section
+        .note
+            span Important Note: 
+            span
+                | Before proceeding with uploading your transaction details, please ensure that you have completed the transaction process first.
+            div
+                span Your balance will be updated in 1 Hour
+                span
+                    | If you encounter any issues or require assistance at any step of the process, please don&apos;t hesitate to reach out to our support team. We&apos;re here to help you through the process and ensure a seamless experience.
+        .image
+            img(src='/images/easypaisa.jpg' alt='')
+        .content_containor
+            .mycontact_info
+                div
+                    h2 Easypaisa  Account Title
+                span M Zeeshan Zafar
+                div
+                    h2 Easypaisa  Account Number
+                span 03444997472
+                div
+                    h2 Binance  Account Number
+                span 03444997472
+            .input_info
+                form#fundsForm
+                    span Enter Amount
+                    input#amount(required='' placeholder='Enter Amount minimum 10RS' type='text')
+                    span TRANSCTION ID
+                    input#transId(required='' placeholder='Enter Amount Transction Id' type='text')
+                    span Upload ScreenShot
+                    input#img(type='file')
+                    button.cart_btn.cd_btn(type='submit') Pay
+
