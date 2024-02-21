@@ -19,7 +19,7 @@ export const login = async (email, password) => {
     }
   } catch (err) {
     console.log(err)
-    showAlert(err.response.data.msg, "error");
+    showAlert(err.response.data.message, "error");
   }
 };
 export const logout = async () => {
@@ -28,6 +28,7 @@ export const logout = async () => {
       method: "Get",
       url: "api/v1/users/logout",
     });
+    console.log(res)
     if (res.data.status === "sucess") {
       window.setTimeout(() => {
         showAlert("logged out sucessfully", "success");
@@ -61,14 +62,14 @@ export const signup = async (email, name, phone, password, confirmPassword) => {
     }
   } catch (err) {
     console.log(err)
-    showAlert(err.response.data.msg , 'error')
+    showAlert(err.response.data.message , 'error')
   }
 };
 export const placeOrder = async(plan,webUrl,creditionls,customer)=>{
   try{
     const res = await axios({
       method: 'post',
-      url: 'api/v1/order/api/v1',
+      url: 'api/v1/order/',
       data:{
         plan,
         webUrl,

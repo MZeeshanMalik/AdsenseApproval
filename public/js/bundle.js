@@ -5511,7 +5511,7 @@ var login = exports.login = /*#__PURE__*/function () {
           _context.prev = 7;
           _context.t0 = _context["catch"](0);
           console.log(_context.t0);
-          (0, _alert.showAlert)(_context.t0.response.data.msg, "error");
+          (0, _alert.showAlert)(_context.t0.response.data.message, "error");
         case 11:
         case "end":
           return _context.stop();
@@ -5536,6 +5536,7 @@ var logout = exports.logout = /*#__PURE__*/function () {
           });
         case 3:
           res = _context2.sent;
+          console.log(res);
           if (res.data.status === "sucess") {
             window.setTimeout(function () {
               (0, _alert.showAlert)("logged out sucessfully", "success");
@@ -5543,17 +5544,17 @@ var logout = exports.logout = /*#__PURE__*/function () {
               location.assign("/");
             }, 1200);
           }
-          _context2.next = 10;
+          _context2.next = 11;
           break;
-        case 7:
-          _context2.prev = 7;
+        case 8:
+          _context2.prev = 8;
           _context2.t0 = _context2["catch"](0);
           (0, _alert.showAlert)("error", "Failed to logout ! Please try again.");
-        case 10:
+        case 11:
         case "end":
           return _context2.stop();
       }
-    }, _callee2, null, [[0, 7]]);
+    }, _callee2, null, [[0, 8]]);
   }));
   return function logout() {
     return _ref2.apply(this, arguments);
@@ -5593,7 +5594,7 @@ var signup = exports.signup = /*#__PURE__*/function () {
           _context3.prev = 8;
           _context3.t0 = _context3["catch"](0);
           console.log(_context3.t0);
-          (0, _alert.showAlert)(_context3.t0.response.data.msg, 'error');
+          (0, _alert.showAlert)(_context3.t0.response.data.message, 'error');
         case 12:
         case "end":
           return _context3.stop();
@@ -5614,7 +5615,7 @@ var placeOrder = exports.placeOrder = /*#__PURE__*/function () {
           _context4.next = 3;
           return (0, _axios.default)({
             method: 'post',
-            url: 'api/v1/order/api/v1',
+            url: 'api/v1/order/',
             data: {
               plan: plan,
               webUrl: webUrl,
