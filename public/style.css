@@ -102,13 +102,7 @@
       left: 0;
     }
   }
-  @media(max-width: 350px) {
-    label.logo{
-      font-size: 17px;
-      padding-left: 6px;
-      padding: 0px 2px;
-    }
-  }
+
   /* section{
     background: url(bg1.jpg) no-repeat;
     background-size: cover;
@@ -611,4 +605,11 @@ color: rgb(255, 255, 255);
 .error_message h1{
   background-color: red;
   color: wheat;
+}
+@media(max-width: 350px) {
+  label.logo{
+    font-size: 17px;
+    padding-left: 6px;
+    padding: 0px 2px;
+  }
 }

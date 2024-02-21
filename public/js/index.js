@@ -9,6 +9,41 @@ const signUpForm = document.getElementById('signup--form');
 const fundsForm = document.getElementById('fundsForm')
 const contactform  = document.getElementById('contact--form')
 const logoutBtn = document.getElementById('logout')
+// const checkbtn = document.getElementsByClassName('checkbtn')
+// if(containor){
+// checkbtn.addEventListener('click' , ()=>{
+//   var styles = window.getComputedStyle(containor)
+//   var diplayproperty = styles.getPropertyValue('display')
+//   console.log(diplayproperty)
+//   // if(diplayproperty=== '')
+// })
+// }
+
+document.addEventListener("DOMContentLoaded", function() {
+  const checkBtn = document.querySelector('.checkbtn');
+  const ul = document.querySelector('nav ul');
+  const containor = document.getElementById('containor1');
+
+  checkBtn.addEventListener('click', function() {
+      const currentLeft = parseInt(window.getComputedStyle(ul).getPropertyValue('left'));
+
+      if (currentLeft === 0) {
+        if(containor){
+          containor.style.display = 'block';
+          ul.style.left = '-100';
+        }
+          ul.style.left = '-100%';
+      } else {
+        if(containor){
+          containor.style.display = 'none';
+          ul.style.left = '0';
+        }
+          ul.style.left = '0';
+      }
+  });
+});
+
+
 if(loginForm){
     loginForm.addEventListener('submit', (e)=>{
         e.preventDefault();

@@ -59816,6 +59816,37 @@ var signUpForm = document.getElementById('signup--form');
 var fundsForm = document.getElementById('fundsForm');
 var contactform = document.getElementById('contact--form');
 var logoutBtn = document.getElementById('logout');
+// const checkbtn = document.getElementsByClassName('checkbtn')
+// if(containor){
+// checkbtn.addEventListener('click' , ()=>{
+//   var styles = window.getComputedStyle(containor)
+//   var diplayproperty = styles.getPropertyValue('display')
+//   console.log(diplayproperty)
+//   // if(diplayproperty=== '')
+// })
+// }
+
+document.addEventListener("DOMContentLoaded", function () {
+  var checkBtn = document.querySelector('.checkbtn');
+  var ul = document.querySelector('nav ul');
+  var containor = document.getElementById('containor1');
+  checkBtn.addEventListener('click', function () {
+    var currentLeft = parseInt(window.getComputedStyle(ul).getPropertyValue('left'));
+    if (currentLeft === 0) {
+      if (containor) {
+        containor.style.display = 'block';
+        ul.style.left = '-100';
+      }
+      ul.style.left = '-100%';
+    } else {
+      if (containor) {
+        containor.style.display = 'none';
+        ul.style.left = '0';
+      }
+      ul.style.left = '0';
+    }
+  });
+});
 if (loginForm) {
   loginForm.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -60009,7 +60040,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51668" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59251" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
