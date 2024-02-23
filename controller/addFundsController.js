@@ -3,6 +3,7 @@ const AddFundsModel = require('../Model/addFunds');
 const handleFactory = require('./handleFactory');
 const multer = require('multer')
 const sharp = require('sharp')
+const jwt = require('jsonwebtoken')
 // exports.NewFund = handleFactory.Addnew(AddFundsModel);
 const multerStorage = multer.memoryStorage();
 const multerFilter = (req, file, cb) => {
@@ -33,10 +34,14 @@ exports.resizeUserPhoto = async(req, res, next) => {
        next();
 };
 exports.NewFund = catchAsync(async (req,res,next)=>{
+  const jwtToken = req.cookies.jwt
+        const decodedToken = jwt.decode(jwtToken) 
+        const userId = decodedToken.id;
   const newItem = await AddFundsModel.create({
     amount: req.body.amount,
     transctionId: req.body.transctionId,
     Image:  req.file.filename,
+    user: userId
   })
   res.status(200).json({
     message: "sucess",

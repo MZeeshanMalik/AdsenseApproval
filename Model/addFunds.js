@@ -9,6 +9,9 @@ const AddFundSchema = new mongoose.Schema({
     },
     Image: {
         type: String
+    },
+    user:{
+        type:String
     }
 })
 const AddFunds = mongoose.model( 'AddFunds' ,AddFundSchema );
