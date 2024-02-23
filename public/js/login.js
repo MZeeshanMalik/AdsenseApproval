@@ -32,9 +32,9 @@ export const logout = async () => {
     if (res.data.status === "sucess") {
       window.setTimeout(() => {
         showAlert("logged out sucessfully", "success");
-        // location.reload(true);
+        location.reload(true);
         location.assign("/");
-      }, 1200);
+      }, 1000);
     }
   } catch (err) {
     showAlert("error", "Failed to logout ! Please try again.");
@@ -65,7 +65,7 @@ export const signup = async (email, name, phone, password, confirmPassword) => {
     showAlert(err.response.data.message , 'error')
   }
 };
-export const placeOrder = async(plan,webUrl,creditionls,customer)=>{
+export const placeOrder = async(plan,webUrl,creditionls)=>{
   try{
     const res = await axios({
       method: 'post',
@@ -73,16 +73,15 @@ export const placeOrder = async(plan,webUrl,creditionls,customer)=>{
       data:{
         plan,
         webUrl,
-        webCredetionals: creditionls,
-        customer 
+        webCredetionals: creditionls, 
       }
     })
     console.log(res)
     if(res.data.status === 'sucess'){
       window.setTimeout(() => {
         showAlert("your request has been submitted sucessfully.", "success");
-        location.assign("/user");
-      }, 4000);
+        // location.assign("/user");
+      }, 1000);
     }
   }catch(err){
     console.log(err)
@@ -100,6 +99,7 @@ export const AddFundRequest = async(amount,transctionId,image)=>{
         Image: image
       }
     })
+    console.log(res)
     if(res.data.status === 'sucess'){
       window.setTimeout(() => {
         showAlert("your Fund Addition request  has been submitted sucessfully.", "success");
@@ -108,6 +108,6 @@ export const AddFundRequest = async(amount,transctionId,image)=>{
     }
   }catch(err){
     console.log(err)
-    showAlert(err.response.data.msg , 'error')
+    showAlert(err.message , 'error')
   }
 }

@@ -75,28 +75,7 @@ if(OrderForm){
         const plan = document.getElementById('options').value;
         const url = document.getElementById('url').value;
         const creditionls = document.getElementById('creditionls').value;
-        function getJwtToken() {
-            // Split document.cookie string into individual cookies
-            const cookies = document.cookie.split(';');
-            // Loop through each cookie
-            for (let i = 0; i < cookies.length; i++) {
-                const cookie = cookies[i].trim();
-                // Check if the cookie starts with 'jwt='
-                if (cookie.startsWith('jwt=')) {
-                    // Return everything after 'jwt='
-                    return cookie.substring('jwt='.length);
-                }
-            }
-            // If 'jwt' cookie is not found, return null
-            return null;
-        }
-        const jwtToken = getJwtToken();
-        console.log(jwtToken)
-        const decodedToken = jwt.decode(jwtToken) 
-        console.log(decodedToken)
-        const userId = decodedToken.id
-        console.log(userId)
-        placeOrder(plan,url,creditionls,userId)
+        placeOrder(plan,url,creditionls)
     })
 }
 
@@ -152,6 +131,7 @@ export const AddFundRequest = async (amount, transactionId, image) => {
         }
       })
       console.log(res)
+      console.log(res)
       if(res.data.status === 'sucess'){
         window.setTimeout(() => {
           showAlert("your  request  has been submitted sucessfully.", "success");
@@ -165,8 +145,8 @@ export const AddFundRequest = async (amount, transactionId, image) => {
   if(contactform){
     contactform.addEventListener('submit' , (e)=>{
       e.preventDefault();
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
+      const name = document.getElementById('_name').value;
+      const email = document.getElementById('_email').value;
       const phone = document.getElementById('phone').value;
       const problem = document.getElementById('problem').value;
       contactForm(name,email,phone,problem)

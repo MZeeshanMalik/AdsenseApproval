@@ -60,3 +60,11 @@
     cursor: pointer;
 
 }
+@media (max-width: 600px){
+    .blog-post-content{
+        padding: 2px 5px;
+    }
+    .blog-post-content p {
+        line-height: 30px;
+    }
+}

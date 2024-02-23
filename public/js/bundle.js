@@ -5540,9 +5540,9 @@ var logout = exports.logout = /*#__PURE__*/function () {
           if (res.data.status === "sucess") {
             window.setTimeout(function () {
               (0, _alert.showAlert)("logged out sucessfully", "success");
-              // location.reload(true);
+              location.reload(true);
               location.assign("/");
-            }, 1200);
+            }, 1000);
           }
           _context2.next = 11;
           break;
@@ -5606,7 +5606,7 @@ var signup = exports.signup = /*#__PURE__*/function () {
   };
 }();
 var placeOrder = exports.placeOrder = /*#__PURE__*/function () {
-  var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(plan, webUrl, creditionls, customer) {
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(plan, webUrl, creditionls) {
     var res;
     return _regeneratorRuntime().wrap(function _callee4$(_context4) {
       while (1) switch (_context4.prev = _context4.next) {
@@ -5619,8 +5619,7 @@ var placeOrder = exports.placeOrder = /*#__PURE__*/function () {
             data: {
               plan: plan,
               webUrl: webUrl,
-              webCredetionals: creditionls,
-              customer: customer
+              webCredetionals: creditionls
             }
           });
         case 3:
@@ -5629,8 +5628,8 @@ var placeOrder = exports.placeOrder = /*#__PURE__*/function () {
           if (res.data.status === 'sucess') {
             window.setTimeout(function () {
               (0, _alert.showAlert)("your request has been submitted sucessfully.", "success");
-              location.assign("/user");
-            }, 4000);
+              // location.assign("/user");
+            }, 1000);
           }
           _context4.next = 12;
           break;
@@ -5645,7 +5644,7 @@ var placeOrder = exports.placeOrder = /*#__PURE__*/function () {
       }
     }, _callee4, null, [[0, 8]]);
   }));
-  return function placeOrder(_x8, _x9, _x10, _x11) {
+  return function placeOrder(_x8, _x9, _x10) {
     return _ref4.apply(this, arguments);
   };
 }();
@@ -5668,26 +5667,27 @@ var AddFundRequest = exports.AddFundRequest = /*#__PURE__*/function () {
           });
         case 3:
           res = _context5.sent;
+          console.log(res);
           if (res.data.status === 'sucess') {
             window.setTimeout(function () {
               (0, _alert.showAlert)("your Fund Addition request  has been submitted sucessfully.", "success");
               location.assign("/user");
             }, 3000);
           }
-          _context5.next = 11;
+          _context5.next = 12;
           break;
-        case 7:
-          _context5.prev = 7;
+        case 8:
+          _context5.prev = 8;
           _context5.t0 = _context5["catch"](0);
           console.log(_context5.t0);
-          (0, _alert.showAlert)(_context5.t0.response.data.msg, 'error');
-        case 11:
+          (0, _alert.showAlert)(_context5.t0.message, 'error');
+        case 12:
         case "end":
           return _context5.stop();
       }
-    }, _callee5, null, [[0, 7]]);
+    }, _callee5, null, [[0, 8]]);
   }));
-  return function AddFundRequest(_x12, _x13, _x14) {
+  return function AddFundRequest(_x11, _x12, _x13) {
     return _ref5.apply(this, arguments);
   };
 }();
@@ -59877,28 +59877,7 @@ if (OrderForm) {
     var plan = document.getElementById('options').value;
     var url = document.getElementById('url').value;
     var creditionls = document.getElementById('creditionls').value;
-    function getJwtToken() {
-      // Split document.cookie string into individual cookies
-      var cookies = document.cookie.split(';');
-      // Loop through each cookie
-      for (var i = 0; i < cookies.length; i++) {
-        var cookie = cookies[i].trim();
-        // Check if the cookie starts with 'jwt='
-        if (cookie.startsWith('jwt=')) {
-          // Return everything after 'jwt='
-          return cookie.substring('jwt='.length);
-        }
-      }
-      // If 'jwt' cookie is not found, return null
-      return null;
-    }
-    var jwtToken = getJwtToken();
-    console.log(jwtToken);
-    var decodedToken = jwt.decode(jwtToken);
-    console.log(decodedToken);
-    var userId = decodedToken.id;
-    console.log(userId);
-    (0, _login.placeOrder)(plan, url, creditionls, userId);
+    (0, _login.placeOrder)(plan, url, creditionls);
   });
 }
 var AddFundRequest = exports.AddFundRequest = /*#__PURE__*/function () {
@@ -59979,23 +59958,24 @@ var contactForm = /*#__PURE__*/function () {
         case 3:
           res = _context2.sent;
           console.log(res);
+          console.log(res);
           if (res.data.status === 'sucess') {
             window.setTimeout(function () {
               (0, _alert.showAlert)("your  request  has been submitted sucessfully.", "success");
               // location.assign("/user");
             }, 1000);
           }
-          _context2.next = 11;
+          _context2.next = 12;
           break;
-        case 8:
-          _context2.prev = 8;
+        case 9:
+          _context2.prev = 9;
           _context2.t0 = _context2["catch"](0);
           console.log(_context2.t0);
-        case 11:
+        case 12:
         case "end":
           return _context2.stop();
       }
-    }, _callee2, null, [[0, 8]]);
+    }, _callee2, null, [[0, 9]]);
   }));
   return function contactForm(_x4, _x5, _x6, _x7) {
     return _ref2.apply(this, arguments);
@@ -60004,8 +59984,8 @@ var contactForm = /*#__PURE__*/function () {
 if (contactform) {
   contactform.addEventListener('submit', function (e) {
     e.preventDefault();
-    var name = document.getElementById('name').value;
-    var email = document.getElementById('email').value;
+    var name = document.getElementById('_name').value;
+    var email = document.getElementById('_email').value;
     var phone = document.getElementById('phone').value;
     var problem = document.getElementById('problem').value;
     contactForm(name, email, phone, problem);
@@ -60041,7 +60021,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59251" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58174" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

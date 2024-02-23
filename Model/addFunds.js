@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const AddFundSchema = new mongoose.Schema({
     amount: {
-        type: Number
+        type: String
     },
     transctionId: {
         type: String
