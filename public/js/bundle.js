@@ -5667,25 +5667,26 @@ var AddFundRequest = exports.AddFundRequest = /*#__PURE__*/function () {
           });
         case 3:
           res = _context5.sent;
-          console.log(res);
+          // console.log(res)
           if (res.data.status === 'sucess') {
             window.setTimeout(function () {
               (0, _alert.showAlert)("your Fund Addition request  has been submitted sucessfully.", "success");
               location.assign("/user");
             }, 3000);
           }
-          _context5.next = 12;
+          _context5.next = 10;
           break;
-        case 8:
-          _context5.prev = 8;
+        case 7:
+          _context5.prev = 7;
           _context5.t0 = _context5["catch"](0);
-          console.log(_context5.t0);
-          (0, _alert.showAlert)(_context5.t0.message, 'error');
-        case 12:
+          // console.log(err)
+          // console.log(err.response.data)
+          (0, _alert.showAlert)(_context5.t0.response.data.message, 'error');
+        case 10:
         case "end":
           return _context5.stop();
       }
-    }, _callee5, null, [[0, 8]]);
+    }, _callee5, null, [[0, 7]]);
   }));
   return function AddFundRequest(_x11, _x12, _x13) {
     return _ref5.apply(this, arguments);
@@ -59902,25 +59903,23 @@ var AddFundRequest = exports.AddFundRequest = /*#__PURE__*/function () {
           });
         case 7:
           res = _context.sent;
-          console.log(res);
           if (res.data.message === 'sucess') {
             window.setTimeout(function () {
               (0, _alert.showAlert)("your Fund Addition request  has been submitted sucessfully.", "success");
               // location.assign("/user");
             }, 2000);
           }
-          _context.next = 16;
+          _context.next = 14;
           break;
-        case 12:
-          _context.prev = 12;
+        case 11:
+          _context.prev = 11;
           _context.t0 = _context["catch"](0);
-          console.error(_context.t0);
-          (0, _alert.showAlert)(_context.t0.response.data.msg, 'error');
-        case 16:
+          (0, _alert.showAlert)(_context.t0.response.data.message, 'error');
+        case 14:
         case "end":
           return _context.stop();
       }
-    }, _callee, null, [[0, 12]]);
+    }, _callee, null, [[0, 11]]);
   }));
   return function AddFundRequest(_x, _x2, _x3) {
     return _ref.apply(this, arguments);
@@ -59928,8 +59927,6 @@ var AddFundRequest = exports.AddFundRequest = /*#__PURE__*/function () {
 }();
 if (fundsForm) {
   fundsForm.addEventListener('submit', function (e) {
-    console.log(fundsForm);
-    console.log('hi');
     e.preventDefault();
     var amount = document.getElementById('amount').value;
     var transId = document.getElementById('transId').value;
@@ -60021,7 +60018,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58174" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62202" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

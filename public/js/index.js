@@ -94,7 +94,6 @@ export const AddFundRequest = async (amount, transactionId, image) => {
           'Content-Type': 'multipart/form-data'
         }
       });
-      console.log(res)
       if (res.data.message === 'sucess') {
         window.setTimeout(() => {
             showAlert("your Fund Addition request  has been submitted sucessfully.", "success");
@@ -102,15 +101,12 @@ export const AddFundRequest = async (amount, transactionId, image) => {
           }, 2000);
       }
     } catch (err) {
-      console.error(err);
-      showAlert(err.response.data.msg, 'error');
+      showAlert(err.response.data.message, 'error');
     }
   };
   
   if (fundsForm) {
     fundsForm.addEventListener('submit', (e) => {
-        console.log(fundsForm)
-        console.log('hi')
       e.preventDefault();
       const amount = document.getElementById('amount').value;
       const transId = document.getElementById('transId').value;

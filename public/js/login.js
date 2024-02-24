@@ -99,7 +99,7 @@ export const AddFundRequest = async(amount,transctionId,image)=>{
         Image: image
       }
     })
-    console.log(res)
+    // console.log(res)
     if(res.data.status === 'sucess'){
       window.setTimeout(() => {
         showAlert("your Fund Addition request  has been submitted sucessfully.", "success");
@@ -107,7 +107,8 @@ export const AddFundRequest = async(amount,transctionId,image)=>{
       }, 3000);
     }
   }catch(err){
-    console.log(err)
-    showAlert(err.message , 'error')
+    // console.log(err)
+    // console.log(err.response.data)
+    showAlert(err.response.data.message , 'error')
   }
 }
