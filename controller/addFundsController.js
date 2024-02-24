@@ -4,6 +4,7 @@ const handleFactory = require('./handleFactory');
 const multer = require('multer')
 const sharp = require('sharp')
 const jwt = require('jsonwebtoken')
+const AppError = require('../utils/appError')
 // exports.NewFund = handleFactory.Addnew(AddFundsModel);
 const multerStorage = multer.memoryStorage();
 const multerFilter = (req, file, cb) => {
