@@ -487,6 +487,12 @@ color: rgb(255, 255, 255);
   padding: 18px 59px 25px 54px;
   background: #BBDEFB;
  }
+ .image{
+  display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+ }
  .image img{
   height: 50vh;
     width: 70%;
