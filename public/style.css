@@ -12,7 +12,7 @@
   font-style: normal;
   }
   nav{
-    background: #0082e6;
+    background: #5ec562;
     height: 80px;
     width: 100%;
     display: flex;
@@ -41,7 +41,7 @@
     text-transform: uppercase;
   }
   a.active,a:hover{
-    background: #1b9bff;
+    background: #39f1a5a6;
     transition: .5s;
   }
   .checkbtn{
@@ -489,6 +489,9 @@ color: rgb(255, 255, 255);
  }
  .image img{
   height: 50vh;
+    width: 70%;
+    padding: 9px 5px;
+    border-radius: 38px;
  }
  .mycontact_info div{
   padding: 4px 2px 9px 0px;
