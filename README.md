@@ -1,7 +1,4 @@
 # AdsenseApproval Project
-
-![AdsenseApproval](https://github.com/MZeeshanMalik/AdsenseApproval)
-
 ## Introduction
 
 The **AdsenseApproval** project is a web application aimed at helping users understand the Google AdSense approval process. It provides insights, tips, and best practices for getting your website approved by Google AdSense to monetize your content.
