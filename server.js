@@ -4,7 +4,7 @@ const dotenv = require("dotenv");
 const Chat = require("./Model/chatModel");
 const { userId } = require("./controller/authenticationController");
 const { ObjectId } = require("mongodb");
-const { v4: uuidv4 } = require("uuid");
+// const { v4: uuidv4 } = require("uuid");
 // const socketIo = require("socket.io");
 // const express = require("express");
 // const http = require("http");
@@ -25,7 +25,7 @@ const serverWithSocket = app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 function generateUniqueId() {
-  return uuidv4();
+  return;
 }
 const io = require("socket.io")(serverWithSocket); //? invoking the func also something like func()
 // Map to store user IDs and socket connections
