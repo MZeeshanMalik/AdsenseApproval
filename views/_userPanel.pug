@@ -5,3 +5,9 @@
         span=`your Balance ${user.balance}`
     li 
         a(href="") Orders
+    li 
+        -if(user.role=='admin')
+            a(href="/admin-panel") Live Chat Panel
+        -else
+            a(href="/chat") Live Chat
+        
