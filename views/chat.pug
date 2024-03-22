@@ -1,0 +1,77 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Document
+  link(rel='stylesheet' href='chat.css')
+  link(rel="icon" type="image/png" href="/images/adesense.jpg")
+#chat.--dark-theme
+  .chat__conversation-board
+    each chat in chats
+      //- -console.log(chat.sender===user._id)
+      //- -console.log(chat.sender , user._id)
+      - if (chat.sender.toString()===user._id.toString())
+        .chat__conversation-board__message-container.reversed
+          .chat__conversation-board__message__person
+            .chat__conversation-board__message__person__avatar
+              img(src='/images/default.jpg' alt='Thomas Rogh')
+            span.chat__conversation-board__message__person__nickname Thomas Rogh
+          .chat__conversation-board__message__context
+            .chat__conversation-board__message__bubble
+              span=(chat.message)
+          .chat__conversation-board__message__options
+            button.btn-icon.chat__conversation-board__message__option-button.option-item.emoji-button
+              svg.feather.feather-smile.sc-dnqmqq.jxshSx(xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewbox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true')
+                circle(cx='12' cy='12' r='10')
+                path(d='M8 14s1.5 2 4 2 4-2 4-2')
+                line(x1='9' y1='9' x2='9.01' y2='9')
+                line(x1='15' y1='9' x2='15.01' y2='9')
+            button.btn-icon.chat__conversation-board__message__option-button.option-item.more-button
+              svg.feather.feather-more-horizontal.sc-dnqmqq.jxshSx(xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewbox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true')
+                circle(cx='12' cy='12' r='1')
+                circle(cx='19' cy='12' r='1')
+                circle(cx='5' cy='12' r='1')
+      //- - console.log(chat.receiver==user._id)
+      -if(chat.receiver.toString()===user._id.toString())
+        .chat__conversation-board__message-container
+          .chat__conversation-board__message__person
+            .chat__conversation-board__message__person__avatar
+              img(src='/images/adsense.png' alt='Monika Figi')
+            span.chat__conversation-board__message__person__nickname=`${user.name}`
+          .chat__conversation-board__message__context
+            .chat__conversation-board__message__bubble
+              span=(chat.message)
+          .chat__conversation-board__message__options
+            button.btn-icon.chat__conversation-board__message__option-button.option-item.emoji-button
+              svg.feather.feather-smile.sc-dnqmqq.jxshSx(xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewbox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true')
+                circle(cx='12' cy='12' r='10')
+                path(d='M8 14s1.5 2 4 2 4-2 4-2')
+                line(x1='9' y1='9' x2='9.01' y2='9')
+                line(x1='15' y1='9' x2='15.01' y2='9')
+            button.btn-icon.chat__conversation-board__message__option-button.option-item.more-button
+              svg.feather.feather-more-horizontal.sc-dnqmqq.jxshSx(xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewbox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true')
+                circle(cx='12' cy='12' r='1')
+                circle(cx='19' cy='12' r='1')
+                circle(cx='5' cy='12' r='1')
+  .chat__conversation-panel
+    .chat__conversation-panel__container
+      button.chat__conversation-panel__button.panel-item.btn-icon.add-file-button
+        svg.feather.feather-plus.sc-dnqmqq.jxshSx(xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewbox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true')
+          line(x1='12' y1='5' x2='12' y2='19')
+          line(x1='5' y1='12' x2='19' y2='12')
+      button.chat__conversation-panel__button.panel-item.btn-icon.emoji-button
+        svg.feather.feather-smile.sc-dnqmqq.jxshSx(xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewbox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true')
+          circle(cx='12' cy='12' r='10')
+          path(d='M8 14s1.5 2 4 2 4-2 4-2')
+          line(x1='9' y1='9' x2='9.01' y2='9')
+          line(x1='15' y1='9' x2='15.01' y2='9')
+      input.chat__conversation-panel__input.panel-item(data-uesrid=`${user._id}`,placeholder='Type a message...')
+      button.chat__conversation-panel__button.panel-item.btn-icon.send-message-button
+        svg(xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewbox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true' data-reactid='1036')
+          line(x1='22' y1='2' x2='11' y2='13')
+          polygon(points='22 2 15 22 11 13 2 9 22 2')
+//- script(src="/socket.io/socket.io.js")
+//- script(type='module').
+//-   import { io } from "https://cdn.socket.io/4.7.4/socket.io.esm.min.js";
+<script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
+script(src='/js/bundle.js')
