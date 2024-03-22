@@ -203,7 +203,12 @@ exports.protect = catchAsync(async (req, res, next) => {
   next();
 });
 exports.userId = async (token) => {
-  const decoded = await promisify(jwt.verify)(token, process.env.SECRET_KEY);
-  const user = await User.findById(decoded.id);
-  return user;
+  if (token) {
+    const decoded = await promisify(jwt.verify)(token, process.env.SECRET_KEY);
+    if (!decoded) {
+      return next(new AppError("Failed to get token"));
+    }
+    const user = await User.findById(decoded.id);
+    return user;
+  }
 };
