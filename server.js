@@ -4,7 +4,7 @@ const dotenv = require("dotenv");
 const Chat = require("./Model/chatModel");
 const { userId } = require("./controller/authenticationController");
 const { ObjectId } = require("mongodb");
-const { v4: uuidv4 } = require("uuid");
+// const { v4: uuidv4 } = require("uuid");
 const catchAsync = require("./utils/catchAsync");
 const cookieParser = require("cookie-parser");
 app.use(cookieParser());
@@ -28,7 +28,9 @@ const serverWithSocket = app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 function generateUniqueId() {
-  return uuidv4();
+   const timestamp = Date.now().toString(36); // Convert current timestamp to base 36 string
+  const randomString = Math.random().toString(36).substr(2, 5); // Generate random string and take a substring
+  return timestamp + randomString;
 }
 const io = require("socket.io")(serverWithSocket); //? invoking the func also something like func()
 // Map to store user IDs and socket connections
