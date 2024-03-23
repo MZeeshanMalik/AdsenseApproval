@@ -22,7 +22,7 @@ const createToken = (user, statusCode, res) => {
   if (process.env.NODE_ENV === "production") {
     cookieOptions.secure = true;
   }
-  console.log(token, cookieOptions);
+  // console.log(token, cookieOptions);
   res.cookie("jwt", token, cookieOptions);
   user.password = undefined;
   res.status(statusCode).json({
@@ -54,7 +54,7 @@ exports.login = catchAsync(async (req, res, next) => {
   if (!user || !password) {
     return next(new AppError("please provide correct email and password"));
   }
-  console.log(password);
+  // console.log(password);
   const correctPass = await user.correctPassword(password, user.password);
   if (!correctPass) {
     return next(new AppError("Email or Password is not correct"));
@@ -67,7 +67,7 @@ exports.login = catchAsync(async (req, res, next) => {
 // Log out user
 
 exports.logout = (req, res, next) => {
-  res.cookie("jwt", "Logged out", {
+  res.cookie("jwt", "", {
     expires: new Date(Date.now() + 10 * 100),
     httpOnly: true,
   });
@@ -137,8 +137,8 @@ exports.restrictTo = (...roles) => {
   return (req, res, next) => {
     // roles = [admin, lead-guide]
     // console.log(req);
-    console.log(req.user);
-    console.log(...roles);
+    // console.log(req.user);
+    // console.log(...roles);
     if (!roles.includes(req.user.role)) {
       return next(
         new AppError("you are not allowed to perform this action", 403)
@@ -205,10 +205,19 @@ exports.protect = catchAsync(async (req, res, next) => {
 exports.userId = async (token) => {
   if (token) {
     const decoded = await promisify(jwt.verify)(token, process.env.SECRET_KEY);
+    // console.log(decoded);
     if (!decoded) {
+      // console.log(decoded);
       return next(new AppError("Failed to get token"));
     }
+    // console.log(decoded);
     const user = await User.findById(decoded.id);
+    // console.log(user);
+    if (!user) {
+      // console.log("user is not defined");
+      return next();
+    }
     return user;
   }
+  // next();
 };
