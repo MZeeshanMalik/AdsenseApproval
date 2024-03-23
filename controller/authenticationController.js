@@ -202,57 +202,85 @@ exports.protect = catchAsync(async (req, res, next) => {
   req.user = user;
   next();
 });
-exports.userId = async (token) => {
-  if (!token) {
-    throw new Error('No token provided');
-  }
+// exports.userId = async (token) => {
+//   if (!token) {
+//     throw new Error('No token provided');
+//   }
 
-  // Split tokens by semicolon
-  const tokens = token.split(';');
+//   // Split tokens by semicolon
+//   const tokens = token.split(';');
   
-  // Iterate over each token
-  for (const token of tokens) {
-    // Trim any leading or trailing whitespace
-    const trimmedToken = token.trim();
+//   // Iterate over each token
+//   for (const token of tokens) {
+//     // Trim any leading or trailing whitespace
+//     const trimmedToken = token.trim();
     
-    // Check if the trimmed token is empty
-    if (trimmedToken.length === 0) {
-      continue; // Skip empty tokens
-    }
+//     // Check if the trimmed token is empty
+//     if (trimmedToken.length === 0) {
+//       continue; // Skip empty tokens
+//     }
 
-    try {
-      const parts = trimmedToken.split('.');
+//     try {
+//       const parts = trimmedToken.split('.');
       
-      // If there are exactly three parts
-      if (parts.length === 3) {
-        const [header, payload, signature] = parts;
-        // Reconstruct the token with correct format
-        const correctedToken = `${header}.${payload}.${signature}`;
-        const decoded = await promisify(jwt.verify)(correctedToken, process.env.SECRET_KEY);
+//       // If there are exactly three parts
+//       if (parts.length === 3) {
+//         const [header, payload, signature] = parts;
+//         // Reconstruct the token with correct format
+//         const correctedToken = `${header}.${payload}.${signature}`;
+//         const decoded = await promisify(jwt.verify)(correctedToken, process.env.SECRET_KEY);
 
-        if (!decoded) {
-          throw new Error('Failed to decode token');
-        }
+//         if (!decoded) {
+//           throw new Error('Failed to decode token');
+//         }
 
-        const user = await User.findById(decoded.id);
-        if (!user) {
-          throw new Error('User not found');
-        }
+//         const user = await User.findById(decoded.id);
+//         if (!user) {
+//           throw new Error('User not found');
+//         }
         
-        // Return user if found
-        return user;
-      } else {
-        console.log("Invalid token format");
+//         // Return user if found
+//         return user;
+//       } else {
+//         console.log("Invalid token format");
+//       }
+//     } catch (err) {
+//       console.log(err);
+//       // Continue processing other tokens even if one token fails
+//       continue;
+//     }
+//   }
+
+//   // Throw error if none of the tokens were valid
+//   console.log('All tokens provided are invalid');
+//   return
+// };
+exports.userId = async (token) => {
+  if (token) {
+    try {
+      const decoded = await promisify(jwt.verify)(
+        token,
+        process.env.SECRET_KEY
+      );
+      // console.log(decoded);
+      console.log(decoded);
+      if (!decoded) {
+        // return next(new AppError("Failed to get token"));
+        return;
       }
+      // console.log(decoded);
+      const user = await User.findById(decoded.id);
+      // console.log(user);
+      if (!user) {
+        // console.log("user is not defined");
+        return next();
+      }
+      return user;
     } catch (err) {
       console.log(err);
-      // Continue processing other tokens even if one token fails
-      continue;
     }
   }
-
-  // Throw error if none of the tokens were valid
-  console.log('All tokens provided are invalid');
-  return
+  // next();
 };
+
 
