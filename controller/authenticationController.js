@@ -203,29 +203,26 @@ exports.protect = catchAsync(async (req, res, next) => {
   next();
 });
 exports.userId = async (token) => {
-  if (token) {
-    try {
-      const decoded = await promisify(jwt.verify)(
-        token,
-        process.env.SECRET_KEY
-      );
-      // console.log(decoded);
-      console.log(decoded);
-      if (!decoded) {
-        // return next(new AppError("Failed to get token"));
-        return;
-      }
-      // console.log(decoded);
-      const user = await User.findById(decoded.id);
-      console.log(user);
-      if (!user) {
-        // console.log("user is not defined");
-        return next();
-      }
-      return user;
-    } catch (err) {
-      console.log(err);
-    }
+  if (!token) {
+    throw new Error('No token provided');
   }
-  // next();
+
+  try {
+    const decoded = await promisify(jwt.verify)(token, process.env.SECRET_KEY);
+    
+    if (!decoded) {
+      throw new Error('Failed to decode token');
+    }
+
+    const user = await User.findById(decoded.id);
+    console.log(user)
+    if (!user) {
+      throw new Error('User not found');
+      return;
+    }
+    return user;
+  } catch (err) {
+    console.log(err)
+    throw new Error(`Failed to verify token: ${err.message}`);
+  }
 };
