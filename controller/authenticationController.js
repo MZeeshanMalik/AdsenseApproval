@@ -208,7 +208,15 @@ exports.userId = async (token) => {
   }
 console.log(token)
   try {
-    const decoded = await promisify(jwt.verify)(token, process.env.SECRET_KEY);
+    const parts = token.split('.');
+
+// If there are exactly three parts
+if (parts.length === 3) {
+    const [header, payload, signature] = parts;
+    // Reconstruct the token with correct format
+    const correctedToken = `${header}.${payload}.${signature}`;
+    console.log(correctedToken);
+  const decoded = await promisify(jwt.verify)(correctedToken, process.env.SECRET_KEY);
     
     if (!decoded) {
       throw new Error('Failed to decode token');
@@ -222,6 +230,10 @@ console.log(token)
     }
     console.log(user)
     return user;
+} else {
+    console.log("Invalid token format");
+}
+    
   } catch (err) {
     console.log(err)
     throw new Error(`Failed to verify token: ${err.message}`);
