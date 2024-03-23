@@ -207,6 +207,18 @@ exports.userId = async (token) => {
     throw new Error('No token provided');
   }
 console.log(token)
+   // Split tokens by semicolon
+  const tokens = token.split(';');
+  
+  // Iterate over each token
+  for (const token of tokens) {
+    // Trim any leading or trailing whitespace
+    const trimmedToken = token.trim();
+    
+    // Check if the trimmed token is empty
+    if (trimmedToken.length === 0) {
+      continue; // Skip empty tokens
+    }
   try {
     const parts = token.split('.');
 
