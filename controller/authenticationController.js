@@ -204,20 +204,28 @@ exports.protect = catchAsync(async (req, res, next) => {
 });
 exports.userId = async (token) => {
   if (token) {
-    const decoded = await promisify(jwt.verify)(token, process.env.SECRET_KEY);
-    // console.log(decoded);
-    if (!decoded) {
+    try {
+      const decoded = await promisify(jwt.verify)(
+        token,
+        process.env.SECRET_KEY
+      );
       // console.log(decoded);
-      return next(new AppError("Failed to get token"));
+      console.log(decoded);
+      if (!decoded) {
+        // return next(new AppError("Failed to get token"));
+        return;
+      }
+      // console.log(decoded);
+      const user = await User.findById(decoded.id);
+      // console.log(user);
+      if (!user) {
+        // console.log("user is not defined");
+        return next();
+      }
+      return user;
+    } catch (err) {
+      console.log(err);
     }
-    // console.log(decoded);
-    const user = await User.findById(decoded.id);
-    // console.log(user);
-    if (!user) {
-      // console.log("user is not defined");
-      return next();
-    }
-    return user;
   }
   // next();
 };
