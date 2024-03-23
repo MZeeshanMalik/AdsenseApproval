@@ -206,8 +206,8 @@ exports.userId = async (token) => {
   if (!token) {
     throw new Error('No token provided');
   }
-console.log(token)
-   // Split tokens by semicolon
+
+  // Split tokens by semicolon
   const tokens = token.split(';');
   
   // Iterate over each token
@@ -219,35 +219,39 @@ console.log(token)
     if (trimmedToken.length === 0) {
       continue; // Skip empty tokens
     }
-  try {
-    const parts = token.split('.');
 
-// If there are exactly three parts
-if (parts.length === 3) {
-    const [header, payload, signature] = parts;
-    // Reconstruct the token with correct format
-    const correctedToken = `${header}.${payload}.${signature}`;
-    console.log(correctedToken);
-  const decoded = await promisify(jwt.verify)(correctedToken, process.env.SECRET_KEY);
-    
-    if (!decoded) {
-      throw new Error('Failed to decode token');
-    }
+    try {
+      const parts = trimmedToken.split('.');
+      
+      // If there are exactly three parts
+      if (parts.length === 3) {
+        const [header, payload, signature] = parts;
+        // Reconstruct the token with correct format
+        const correctedToken = `${header}.${payload}.${signature}`;
+        const decoded = await promisify(jwt.verify)(correctedToken, process.env.SECRET_KEY);
 
-    const user = await User.findById(decoded.id);
-    console.log(user)
-    if (!user) {
-      throw new Error('User not found');
-      return;
+        if (!decoded) {
+          throw new Error('Failed to decode token');
+        }
+
+        const user = await User.findById(decoded.id);
+        if (!user) {
+          throw new Error('User not found');
+        }
+        
+        // Return user if found
+        return user;
+      } else {
+        console.log("Invalid token format");
+      }
+    } catch (err) {
+      console.log(err);
+      // Continue processing other tokens even if one token fails
+      continue;
     }
-    console.log(user)
-    return user;
-} else {
-    console.log("Invalid token format");
-}
-    
-  } catch (err) {
-    console.log(err)
-    throw new Error(`Failed to verify token: ${err.message}`);
   }
+
+  // Throw error if none of the tokens were valid
+  throw new Error('All tokens provided are invalid');
 };
+
