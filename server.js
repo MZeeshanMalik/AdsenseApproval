@@ -4,8 +4,10 @@ const dotenv = require("dotenv");
 const Chat = require("./Model/chatModel");
 const { userId } = require("./controller/authenticationController");
 const { ObjectId } = require("mongodb");
-// const { v4: uuidv4 } = require("uuid");
+const { v4: uuidv4 } = require("uuid");
 const catchAsync = require("./utils/catchAsync");
+const cookieParser = require("cookie-parser");
+app.use(cookieParser());
 // const socketIo = require("socket.io");
 // const express = require("express");
 // const http = require("http");
@@ -26,9 +28,7 @@ const serverWithSocket = app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 function generateUniqueId() {
-  const timestamp = Date.now().toString(36); // Convert current timestamp to base 36 string
-  const randomString = Math.random().toString(36).substr(2, 5); // Generate random string and take a substring
-  return timestamp + randomString;
+  return uuidv4();
 }
 const io = require("socket.io")(serverWithSocket); //? invoking the func also something like func()
 // Map to store user IDs and socket connections
@@ -45,12 +45,18 @@ io.on(
       console.log("Non-logged-in user connected with ID:", userid);
       return;
     } else {
-      const token = socket.handshake.headers.cookie.substr(4);
-      // if (!token) {
-      //   console.log(token);
-      //   return;
-      // }
-      console.log(token);
+      // Create a fake request object with headers property containing the cookie string
+      const fakeRequest = {
+        headers: {
+          cookie: socket.handshake.headers.cookie,
+        },
+      };
+      cookieParser()(fakeRequest, null, () => {});
+
+      // Extract the parsed cookies from the fake request object
+      const cookies = fakeRequest.cookies;
+      console.log(cookies);
+      const token = cookies.jwt;
       const userid = await userId(token);
       console.log(userid);
       console.log(userSocketMap);
