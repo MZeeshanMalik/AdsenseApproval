@@ -217,7 +217,7 @@ exports.userId = async (token) => {
       }
       // console.log(decoded);
       const user = await User.findById(decoded.id);
-      // console.log(user);
+      console.log(user);
       if (!user) {
         // console.log("user is not defined");
         return next();
