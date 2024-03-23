@@ -252,6 +252,7 @@ exports.userId = async (token) => {
   }
 
   // Throw error if none of the tokens were valid
-  throw new Error('All tokens provided are invalid');
+  console.log('All tokens provided are invalid');
+  return
 };
 
