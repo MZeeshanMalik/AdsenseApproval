@@ -206,7 +206,7 @@ exports.userId = async (token) => {
   if (!token) {
     throw new Error('No token provided');
   }
-
+console.log(token)
   try {
     const decoded = await promisify(jwt.verify)(token, process.env.SECRET_KEY);
     
@@ -220,6 +220,7 @@ exports.userId = async (token) => {
       throw new Error('User not found');
       return;
     }
+    console.log(user)
     return user;
   } catch (err) {
     console.log(err)
